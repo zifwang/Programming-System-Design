@@ -118,40 +118,40 @@ public class CashReg
       int numDimes = 0;
       int numNickels = 0;
       int numPennies = 0;
-      if(changeMoney/100 > 0){
-         numDollars = changeMoney/100;
-         changeMoney = changeMoney%100;
+      if(changeMoney/DOLLARS_TO_CENTS > 0){
+         numDollars = changeMoney/DOLLARS_TO_CENTS;
+         changeMoney = changeMoney%DOLLARS_TO_CENTS;
       }
       else{
          numDollars = 0;
-         changeMoney = changeMoney%100;
+         changeMoney = changeMoney%DOLLARS_TO_CENTS;
       }
-      if(changeMoney/25 > 0){
-         numQuarters = changeMoney/25;
-         changeMoney = changeMoney%25;
+      if(changeMoney/QUARTER_TO_CENTS > 0){
+         numQuarters = changeMoney/QUARTER_TO_CENTS;
+         changeMoney = changeMoney%QUARTER_TO_CENTS;
       }
       else{
          numQuarters = 0;
-         changeMoney = changeMoney%25;
+         changeMoney = changeMoney%QUARTER_TO_CENTS;
       }
-      if(changeMoney/10 > 0){
-         numDimes = changeMoney/10;
-         changeMoney = changeMoney%10;
+      if(changeMoney/DIME_TO_CENTS > 0){
+         numDimes = changeMoney/DIME_TO_CENTS;
+         changeMoney = changeMoney%DIME_TO_CENTS;
       }
       else{
          numDimes = 0;
-         changeMoney = changeMoney%10;
+         changeMoney = changeMoney%DIME_TO_CENTS;
       }
-      if(changeMoney/5 > 0){
-         numNickels = changeMoney/5;
-         changeMoney = changeMoney%5;
+      if(changeMoney/NICKEL_TO_CENTS > 0){
+         numNickels = changeMoney/NICKEL_TO_CENTS;
+         changeMoney = changeMoney%NICKEL_TO_CENTS;
       }
       else{
          numNickels = 0;
-         changeMoney = changeMoney%5;
+         changeMoney = changeMoney%NICKEL_TO_CENTS;
       }
-      if(changeMoney/1 > 0){
-         numPennies = changeMoney/1;
+      if(changeMoney/PENNY_TO_CENTS > 0){
+         numPennies = changeMoney/PENNY_TO_CENTS;
       }else{
          numPennies = 0;
       }
