@@ -140,15 +140,7 @@ public class CoinTossSimulatorTester {
         System.out.print("Tosses add up correctly? ");
         System.out.println(correction);
         System.out.println();
-
+    
     }
-
-
-
-
-
-
-
-
-
 }
+// Pass all test cases. 
