@@ -1,0 +1,66 @@
+Name: Ziran Shi, Zifan Wang
+USC NetID:
+CSCI 455 Spring 2019
+Lab 2
+
+Note: On-campus students can put their answers to the lab questions in this file, or use a piece of paper they can show to their lab TA.  DEN students will need to put their answers in this README, so they will get submitted.
+
+Question1.0: Add Partners
+Question1.1: import java.util.GregorianCalendar
+Question1.2: GregorianCalendar someDay = new GregorianCalendar(1995,0,20)
+Question1.3: System.Out.print(someDay.get(GregorianCalendar.YEAR))
+             System.Out.print(someDay.get(GregorianCalendar.MONTH))
+             System.Out.print(someDay.get(GregorianCalendar.DAY_OF_MONTH))
+Question1.4: Calendar.MONTH return a int type. January indicates 0.
+Question1.5: someDay.set(3,20)
+
+Question2.0: 
+try.java:9: error: ';' 			expected                                                                                                                                                 
+        GregorianCalendar someDay = new GregorianCalendar(1995,0, 20)                                                                                                           
+                                                                     ^                                                                                                          
+1 error  
+fix: GregorianCalendar someDay = new GregorianCalendar(1995,0, 20);
+
+2.error: class Date is public, should be declared in a file named Date.java                                                                                           
+public class Date{                                                                                                                                                              
+       ^                                                                                                                                                                        
+try.java:9: error: cannot find symbol                                                                                                                                           
+        GregorianCalendar someDay = GregorianCalendar(1995,0, 20);                                                                                                              
+                                    ^                                                                                                                                           
+  symbol:   method GregorianCalendar(int,int,int)                                                                                                                               
+  location: class Date                                                                                                                                                          
+2 errors    
+fix: GregorianCalendar someDay = new GregorianCalendar(1995,0, 20);
+
+Question 3.1 Describe two compile errors that you got and their fixes while developing this code.
+Birthday.java:18: error: cannot find symbol                                                                                                                                     
+    Calendar today = new Calendar.getInstance();                                                                                                                                
+                                 ^                                                                                                                                              
+  symbol:   class getInstance                                                                                                                                                   
+  location: class Calendar                                                                                                                                                      
+1 error  
+fix: Calendar today = Calendar.getInstance();
+Birthday.java:14: error: cannot find symbol                                                                                                                                     
+    in.nextLin();                                                                                                                                                               
+      ^                                                                                                                                                                         
+  symbol:   method nextLin()                                                                                                                                                    
+  location: variable in of type Scanner                                                                                                                                         
+1 error  
+fix: in.nextLine();
+
+Question 3.2 Devise three test cases (not the one above) for which you and the TA already know the answer, to help verify that your code is working correctly. Describe these test cases and the expected results in the README. Then try out your test cases to help verify your program works properly.
+1.
+Enter your birth month [1..12]: 1                                                                                                                                               
+Enter your birth day of month: 1                                                                                                                                                
+Enter your birth year [4-digit year]: 1996                                                                                                                                      
+Your birthday has already happened this year.
+2. 
+Enter your birth month [1..12]: 2                                                                                                                                               
+Enter your birth day of month: 2                                                                                                                                                
+Enter your birth year [4-digit year]: 2                                                                                                                                         
+Your birthday has not yet happened this year. 
+3.
+Enter your birth month [1..12]: 1                                                                                                                                               
+Enter your birth day of month: 17                                                                                                                                               
+Enter your birth year [4-digit year]: 1                                                                                                                                         
+Your birthday has already happened this year. 

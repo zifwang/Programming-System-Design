@@ -1,0 +1,25 @@
+Name: Zifan Wang
+
+
+Question 1.1:
+	CashReg register = new CashReg();   		-> purchase = 0 & payment = 0
+	register.recordPurchase(0.75); 				-> purchase = 0 + 0.75 
+	register.recordPurchase(1.50);      		-> purchase = 0.75 + 1.50 = 2.25
+	register.receivePayment(2, 0, 5, 0, 0);		-> payment = 2+0*0.25+5*0.1+0*0.05+0*0.01
+	register.giveChange() 						->  = payment(2.50) - purchase(2.25) = 0.25
+Question 1.2:
+	Change: 0.6500000000000004
+	Expected: 0.65
+	This is a round-off error. Reasons: Rounding errors occur when an exact representation of a floating-point number is not possible. When a value cannot be represented exactly, it is rounded to the nearest match.
+
+Question 2.1: Result After My Code:
+	Change: 0.65
+	Expected: 0.65
+
+Question 3.1:
+	After ex2, I am in the ex2 directory currently.
+	Commands I used to creat ex3 directory and copy code from ex2 to ex3:
+	1. cd ..
+	2. mkdir ex3
+	3. cp ex2/CashRegTester.java ex3
+	4. cp ex2/CashReg.java ex3
