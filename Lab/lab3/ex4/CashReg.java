@@ -28,10 +28,10 @@
 public class CashReg
 {
    // Set constant 
-   private static final double QUARTER_VALUE = 0.25;  
-   private static final double DIME_VALUE = 0.1;
-   private static final double NICKEL_VALUE = 0.05;
-   private static final double PENNY_VALUE = 0.01;
+   // private static final double QUARTER_VALUE = 0.25;  
+   // private static final double DIME_VALUE = 0.1;
+   // private static final double NICKEL_VALUE = 0.05;
+   // private static final double PENNY_VALUE = 0.01;
    private static final int DOLLARS_TO_CENTS = 100;
    private static final int QUARTER_TO_CENTS = 25;
    private static final int DIME_TO_CENTS = 10;
@@ -40,7 +40,7 @@ public class CashReg
 
 
    // Set instance variable
-   private double purchase;
+   private int purchase;
    private int payment;
 
    /**
@@ -66,7 +66,7 @@ public class CashReg
       Gets total of all purchases made.
    */
     public double getTotal() {
-       return purchase/100;
+       return (double)purchase/100;
     }; 
 
    /**
@@ -77,6 +77,7 @@ public class CashReg
       @param nickels the number of nickels in the payment
       @param pennies the number of pennies in the payment
    */
+   /** The following code is used in previous part.
    public void receivePayment(int dollars, int quarters, 
          int dimes, int nickels, int pennies)
    {
@@ -86,10 +87,10 @@ public class CashReg
             + nickels * NICKEL_TO_CENTS + pennies * PENNY_TO_CENTS;
    }
    
-   /**
-      Computes the change due and resets the machine for the next customer.
-      @return the change due to the customer
-   */
+   
+      // Computes the change due and resets the machine for the next customer.
+      // @return the change due to the customer
+
    public double giveChange()
    {
       // System.out.println(payment);
@@ -103,4 +104,60 @@ public class CashReg
       payment = 0;
       return change;
    }
+   */
+
+
+   public void receivePayment(Change money) {
+      payment = money.totalValue();
+   }
+
+   public Change giveChange() {
+      int changeMoney = payment - purchase;
+      int numDollars = 0;
+      int numQuarters = 0; 
+      int numDimes = 0;
+      int numNickels = 0;
+      int numPennies = 0;
+      if(changeMoney/100 > 0){
+         numDollars = changeMoney/100;
+         changeMoney = changeMoney%100;
+      }
+      else{
+         numDollars = 0;
+         changeMoney = changeMoney%100;
+      }
+      if(changeMoney/25 > 0){
+         numQuarters = changeMoney/25;
+         changeMoney = changeMoney%25;
+      }
+      else{
+         numQuarters = 0;
+         changeMoney = changeMoney%25;
+      }
+      if(changeMoney/10 > 0){
+         numDimes = changeMoney/10;
+         changeMoney = changeMoney%10;
+      }
+      else{
+         numDimes = 0;
+         changeMoney = changeMoney%10;
+      }
+      if(changeMoney/5 > 0){
+         numNickels = changeMoney/5;
+         changeMoney = changeMoney%5;
+      }
+      else{
+         numNickels = 0;
+         changeMoney = changeMoney%5;
+      }
+      if(changeMoney/1 > 0){
+         numPennies = changeMoney/1;
+      }else{
+         numPennies = 0;
+      }
+      purchase = 0;
+      payment = 0;
+      return new Change(numDollars,numQuarters,numDimes,numNickels,numPennies);
+   }
+
 }
