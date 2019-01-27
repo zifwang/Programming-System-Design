@@ -10,29 +10,12 @@
  */
 
 import javax.swing.JFrame;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.Scanner;
 
 public class CoinSimViewer
 {
-    // private static void display_helper(CoinTossSimulator coinToss){
-    //     System.out.print("Total number of trials: ");
-    //     System.out.println(coinToss.getNumTrials());
-    //     System.out.print("Two-head tosses: ");
-    //     System.out.println(coinToss.getTwoHeads());
-    //     System.out.print("Two-tail tosses: ");
-    //     System.out.println(coinToss.getTwoTails());
-    //     System.out.print("One-head one-tail tosses: ");
-    //     System.out.println(coinToss.getHeadTails());
-    //     String correction;
-    //     if(coinToss.getNumTrials() == (coinToss.getTwoHeads()+coinToss.getTwoTails()+coinToss.getHeadTails())){
-    //         correction = "True";
-    //     }else{
-    //         correction = "False";
-    //     }
-    //     System.out.print("Tosses add up correctly? ");
-    //     System.out.println(correction);
-    //     System.out.println();
-    // }
     public static void main(String[] args)
     {
         /**
@@ -101,15 +84,14 @@ public class CoinSimViewer
         // Summary graph display
         JFrame frame = new JFrame();     // Create a new window to hold graph
 
-        frame.setSize(800,500);              // Height 400 pixels, width 300 pixels;
+        frame.setSize(800,500);              // Height 500 pixels, width 800 pixels;
         frame.setTitle("CoinSim");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-    
+
         // Get windows size;
-        CoinSimComponent component = new CoinSimComponent(i,frame.getBounds().width,frame.getBounds().height);
+        CoinSimComponent component = new CoinSimComponent(i);
         frame.add(component);
-        
 
         frame.setVisible(true);
 
