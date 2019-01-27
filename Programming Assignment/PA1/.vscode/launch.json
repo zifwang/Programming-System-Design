@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - CoinSimViewer",
+            "request": "launch",
+            "mainClass": "CoinSimViewer",
+            "projectName": "PA1_653ef751"
+        }
+    ]
+}

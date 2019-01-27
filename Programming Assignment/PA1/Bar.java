@@ -1,5 +1,5 @@
-// Name:
-// USC NetID:
+// Name: Zifan Wang 
+// USC NetID: 9505587296
 // CS 455 PA1
 // Spring 2019
 
@@ -23,7 +23,16 @@ import java.awt.geom.Rectangle2D;
  * 
  */
 public class Bar {
-   
+   // Private instance variables define here
+   private int bottom;
+   private int left;
+   private int width;
+   private int barHeight;
+   private double scale;
+   private Color color;
+   private String label;
+   private int labelWidth;
+   private int labelHeight;
 
 
    /**
@@ -40,8 +49,16 @@ public class Bar {
       @param label  the label at the bottom of the bar
    */
    public Bar(int bottom, int left, int width, int barHeight,
-              double scale, Color color, String label) {
-
+              double scale, Color color, String label, int labelHeight, int labelWidth) {
+      this.bottom = bottom; 
+      this.left = left;       // left side of bar. Get from bar width and windows size: (window's width)/4-(bar's width/2)
+      this.width = width;     // bar width (fix value)
+      this.barHeight = barHeight;
+      this.scale = scale;
+      this.color = color;
+      this.label = label;
+      this.labelHeight = labelHeight;
+      this.labelWidth = labelWidth;
    }
    
    /**
@@ -49,6 +66,13 @@ public class Bar {
       @param g2  the graphics context
    */
    public void draw(Graphics2D g2) {
+      // System.out.println(left);
+      // System.out.println(bottom-barHeight-labelHeight*2);
+      Rectangle bar = new Rectangle(left,bottom-barHeight-labelHeight,width,barHeight);  // Create a bar: upper-left y = bottom+10(font's size)+barHeight
+      // Font font = new Font(label,Font.PLAIN,10);                   // Set font with style plain and size 10;
 
+      g2.setColor(color);
+      g2.fill(bar);
+      g2.drawString(label,(left+width)-(labelWidth/2),bottom);
    }
 }
