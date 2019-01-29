@@ -14,7 +14,7 @@ Course Syllabus.  And I did not share my solution or parts of it with
 other students in the course."
 
 Initial below to "sign" the above statement:
-
+ZW
 
 ----------------------------------------------
 ACKNOWLEDGE ANY OUTSIDE SOURCES
@@ -25,12 +25,16 @@ textbook.  Be specific about what methods or algorithms are involved,
 and what sections of the textbook are involved (if applicable): [you do
 not need to list any of the code that we wrote for the assignment,
 i.e., the contents of the starter files for the assignment]
+1. CoinSimComponent.java and CoinSimViewer.java is to draw display frame. Reference: Big Java: Early Objects, Interactive Edition section's 2.8 2.9 and 2.10 by Cay S. Horstmann
 
+2. Bar.java is to draw rectangle, fill color, and draw label. Reference: Original Code: Prof. Bono. Use ideal from Big Java: Early Objects, Interactive Edition section's 2.8, 2.9, 2.10, and 4.3 by Cay S. Horstmann
 
+3. CoinSimSimulator.java is to simulate the tossing coin processes. Reference: Original Code: Prof. Bono. Use ideal from Big Java: Early Objects, Interactive Edition section's 4.1 and 4.2 by Cay S. Horstmann
 
+4. CoinSimSimulatorTester.java is to test whether CoinSimSimulator.java run correctly. Reference: Use ideal from Big Java: Early Objects, Interactive Edition section's 2.7 by Cay S. Horstmann
 ----------------------------------------------
 KNOWN BUGS or LIMITATIONS:
-
+The Math.round() function will cause round off by 1%.
 
 
 ----------------------------------------------
@@ -40,7 +44,27 @@ ANY OTHER NOTES FOR THE GRADER:
 
 ----------------------------------------------
 ANSWERS TO ASSIGNMENT README QUESTIONS (if applicable):
+2. What is the probability of each of the three outcomes in a trial: two heads, one head and one tail, and two tails? Why is one of them different than the other two?
+   Ans:
+    Probability of Two Heads: 25%
+    Probability of One Head and One Tail: 50%
+    Probability of Two Tails: 25%
+    Reason: When tossing the first coin, there are 50% chance to be Head and 50% chance to be Tail. 
+            When tossing the second coin, there are also 50% chance to be Head and 50% chance to be Tail.
+            As a result, the probability of two heads will be 50%*50% = 25%
+                         the probability of two tails will also be 50%*50% = 25%
+                         the probability of one head and one tail will be probability of first Head * probability of second Tail + probability of first Tail * probability of second Head = 50%
 
+3. Roughly how many trials do you need to do before you mostly get results within 1% of these probabilities? Do several simulations using your program to determine an answer to this.
+   Ans:
+    After running some simulations, roughly 1000 trails are needed to mostly get result within 1% of these probabilities.
 
-
-
+4. Roughly how many trials can you do before it crashes with an overflow error? State the largest value you tried where it still worked correctly, and one where it overflowed. 
+   You can get an idea of what general values to try by looking at the limits on Java integers (see Section 4.1.1 of the text). 
+   Play around with your program to verify that it actually works for very large values that are within the limits. 
+   Note: this kind of testing can sometimes turn up bugs, so it's good to do. 
+   Warning: For very large values you may have to wait a fair amount of time before you get the results.
+   Ans:
+    2,147,483,647 trails I can do before program crashes with an overflow error.
+    Overflow: 2,147,483,648 trails
+    Reason: the maximum int value in Java is 2,147,483,647 (inclusive).
