@@ -1,8 +1,16 @@
-Name:
-USC NetID:
+Name: Zifan Wang
+USC NetID: 9505587296
 CSCI 455 Spring 2019
 Lab 4
 
 Note: On-campus students can put their answers to the lab questions in this file, or use a piece of paper they can show to their lab TA.  DEN students will need to put their answers in this README, so they will get submitted.
+
+Question 1.1 Why can doing this save us time in the long run, over implementing the whole class at once?
+    Implementing the whole class at once requires more time to debug. When we testing the whole class at once, we may encounter multiple bugs. These bugs may depend on the bugs before.
+    Therefore, we have to spend more time to find each bug and its related bugs. However, testing at least one of the constructors and an accessor method at the begining, will let us 
+    know, there is no bugs and initial class code. This can save us time in finding bugs in constructors. In addition, testing functions one by one would help us to locate bugs.
+
+
+
 
 
