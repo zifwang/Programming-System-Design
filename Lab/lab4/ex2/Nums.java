@@ -40,7 +40,18 @@ public class Nums {
       If the sequence is empty, returns Integer.MAX_VALUE
    */
    public int minVal() {
-      return 0;    // stub code to get it to compile
+      if(intArr.size() > 0){
+         int minValue = intArr.get(0);
+         for(int i = 0; i < intArr.size(); i++){
+            if(minValue >= intArr.get(i)){
+               minValue = intArr.get(i);
+            }
+         }
+         return minValue;    // stub code to get it to compile
+      }
+      else{
+         return Integer.MAX_VALUE;
+      }
    }
 
    /**
@@ -56,6 +67,7 @@ public class Nums {
          System.out.print(" ");
       }
       System.out.print(")");
+
    }
 
    /**

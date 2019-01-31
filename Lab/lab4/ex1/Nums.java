@@ -40,7 +40,9 @@ public class Nums {
       If the sequence is empty, returns Integer.MAX_VALUE
    */
    public int minVal() {
+
       return 0;    // stub code to get it to compile
+
    }
 
    /**
@@ -56,6 +58,7 @@ public class Nums {
          System.out.print(" ");
       }
       System.out.print(")");
+
    }
 
    /**
