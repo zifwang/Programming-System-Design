@@ -1,0 +1,24 @@
+Value of empty nums: ()
+Min value of empty nums: 0
+------------ testing valuesGT --------------
+Values greater than 10: ()
+Original list of nums: ()
+--------------------------------------------
+Value of nums read in: (3 -7 10 17 9 -17 17 21 18 7 )
+Min value of nums: 0
+------------ testing valuesGT --------------
+Values greater than 10: ()
+Original list of nums: (3 -7 10 17 9 -17 17 21 18 7 )
+--------------------------------------------
+------------ testing valuesGT --------------
+Values greater than -20: ()
+Original list of nums: (3 -7 10 17 9 -17 17 21 18 7 )
+--------------------------------------------
+------------ testing valuesGT --------------
+Values greater than -17: ()
+Original list of nums: (3 -7 10 17 9 -17 17 21 18 7 )
+--------------------------------------------
+------------ testing valuesGT --------------
+Values greater than 21: ()
+Original list of nums: (3 -7 10 17 9 -17 17 21 18 7 )
+--------------------------------------------

@@ -18,3 +18,4 @@ Question 2.1 Write down the expected results of calling minVal on each of the Nu
 Question 2.2 From just looking at the results of a call to minVal, we can't always tell whether the Nums object we called it on was empty or non-empty. Write down two examples of non-empty Nums objects such that they return the same value as for an empty Nums object.
     1. one only contains Integer.MAX_VALUE value
     2. one contains two same Integer.MAX_VALUE value
+
