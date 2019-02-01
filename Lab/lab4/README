@@ -17,5 +17,62 @@ Question 2.1 Write down the expected results of calling minVal on each of the Nu
 
 Question 2.2 From just looking at the results of a call to minVal, we can't always tell whether the Nums object we called it on was empty or non-empty. Write down two examples of non-empty Nums objects such that they return the same value as for an empty Nums object.
     1. one only contains Integer.MAX_VALUE value
-    2. one contains two same Integer.MAX_VALUE value
+    2. one contains two same Integer.MAX_VALUE values
 
+Question 3.1 Write down the expected results of the hard-coded tests of valuesGT from NumsTester when run on: nums.in, test1.in, and test2.in.
+    nums.in: (17 17 21 18), (3 -7 10 17 9 -17 17 21 18 7), (3 -7 10 17 9 17 21 18 7 ), ()
+    test1.in (),(),(),()
+    test2.in (45), (1 45 5 -6 8 9 -10 7), (1 45 5 -6 8 9 -10 7), (45)
+
+Question 3.2 Create an additional test case in a new file test3.in that explicitly tests a boundary case of valuesGT when run with on the hard-coded tests of valuesGT from NumsTester. Add the expected results of of this new test case to the list of expected results you gave in Question 3.1
+    test3.in: ------------ testing valuesGT --------------
+              Values greater than 10: (2147483647 21 19 11 22 20 )
+              Original list of nums: (2147483647 10 -20 -17 21 19 -22 -18 -16 9 11 22 20 )
+              --------------------------------------------
+              ------------ testing valuesGT --------------
+              Values greater than -20: (2147483647 10 -17 21 19 -18 -16 9 11 22 20 )
+              Original list of nums: (2147483647 10 -20 -17 21 19 -22 -18 -16 9 11 22 20 )
+              --------------------------------------------
+              ------------ testing valuesGT --------------
+              Values greater than -17: (2147483647 10 21 19 -16 9 11 22 20 )
+              Original list of nums: (2147483647 10 -20 -17 21 19 -22 -18 -16 9 11 22 20 )
+              --------------------------------------------
+              ------------ testing valuesGT --------------
+              Values greater than 21: (2147483647 22 )
+              Original list of nums: (2147483647 10 -20 -17 21 19 -22 -18 -16 9 11 22 20 )
+              --------------------------------------------
+
+
+
+Question 4.1 Give two examples of other possible things we could type in to cause this program to terminate (i.e., besides Ctrl-d). Try each of these on your program.
+    1. There are characters in the file.
+    2. There are some symbols in the file.
+
+Question 4.2 Write down an equivalent statement with more parentheses to show the grouping (i.e., associativity) of the "." operators, that is, to show what part of the expression gets evaluated first. Hint: if you think about it, only one grouping makes sense.
+    nums.valuesGT(threshold).printVals();
+    nums(valuesGT(threshold)printVals())
+    First evaluate nums, and call the valuesGT function wiht intput threshold. valuesGT function will create a new Nums. Last, call printVals() function of this new Nums.
+
+Question 4.3 What is the type of the innermost sub-expression you put parentheses around (i.e., the one that gets evaluated first)?
+    Void
+
+Question 4.4 Write a sequence of statements equivalent to the whole statement in question, but that uses a local variable to store intermediate results.
+    Nums tempArr = new Nums();
+    tempArr = nums.valuesGT(threshold);
+    tempArr.printVals();
+
+Question 4.5 What's the disadvantage of using an ArrayList compared to an array in the Nums class?
+    ArrayList can not support the primitive type. However, the Nums class does.
+
+Question 4.6 What's the advantage of using an ArrayList compared to an array in the Nums class?
+    1. can find min value.
+    2. can compare to threshold.
+    3. can print all values in array
+
+Question 4.7 Many programs involve arrays (or equivalently, array lists), but we don't always need to store all the values when we are processing a sequence of numbers. For each of the following tasks related to this lab say whether an array is necessary to complete the task, and briefly describe why or why not. We're interested in this because we could use a lot less memory if we don't have to save all the numbers.
+To put it another way, do we need to save all the numbers to do the task? (why or why not)
+    1.Reading in a sequence of numbers and printing them all out. No, we do not need to use these data.
+    2.Reading in a sequence of numbers and printing out the minimum value in the sequence. No. We can compare when we read in. 
+    3.Reading in a sequence of numbers, printing them out, and printing out the minvalue in the sequence. No. We can read in and compare while printing.
+    4.Reading in a threshold value, a sequence of numbers, and printing out the numbers from the sequence that are above the threshold value. No. we can compare the readin value with threshold when we read in.
+    5.Reading in a sequence of numbers, and generating the exact output produced by NumsTester.java about that data. Yes. the NumsTester is a different file and need to use data from Nums class.
