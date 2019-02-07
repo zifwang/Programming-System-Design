@@ -1,0 +1,79 @@
+Name: Zifan Wang, Ziran Shi
+USC NetID: 9505587296
+CSCI 455 Spring 2019
+Lab 5
+
+Note: On-campus students can put their answers to the lab questions in this file, or use a piece of paper they can show to their lab TA.  DEN students will need to put their answers in this README, so they will get submitted.
+
+Question 1.1 Besides the name of the method called, what information in the exception error message can help lead you to the exact location of the failure?
+Below is the error info. in the terminal: 
+Exception in thread "main" java.lang.AssertionError
+	at Term.<init>(Term.java:27)
+	at AssertTester.main(AssertTester.java:11)
+We can also location the error by provided line in the code.
+
+
+Question 2.1 On paper (or in README) complete the following example of a Bulgarian Solitaire game (the same example that's in the assignment description. Show what would be on the board after each round (number each round). We're starting it out for you:
+initial:   20 5 1 9 10
+1:         19 4 8 9 5
+2:         18 3 7 8 4 5
+3:         17 2 6 7 3 4 6
+4:         16 1 5 6 2 3 5 7
+5:         15 4 5 1 2 4 6 8
+6:         14 3 4 1 3 5 7 8
+7:         13 2 3 2 4 6 7 8
+8:         12 1 2 1 3 5 6 7 8
+9:         11 1 2 4 5 6 7 9
+10:        10 1 3 4 5 6 8 8
+11:        9 2 3 4 5 7 7 8
+12:        8 1 2 3 4 6 6 7 8
+13:        7 1 2 3 5 5 6 7 9
+14:        6 1 2 4 4 5 6 8 9
+15:        5 1 3 3 4 5 7 8 9 
+16:        4 2 2 3 4 6 7 8 9
+17:        3 1 1 2 3 5 6 7 8 9
+18:        2 1 2 4 5 6 7 8 10
+19:        1 1 3 4 5 6 7 9 9
+20:        2 3 4 5 6 8 8 9
+21:        1 2 3 4 5 7 7 8 8
+22:        1 2 3 4 6 6 7 7 9
+23:        1 2 3 5 5 6 6 8 9
+24:        1 2 4 4 5 5 7 8 9
+25:        1 3 3 4 4 6 7 8 9
+26:        2 2 3 3 5 6 7 8 9
+27:        1 1 2 2 4 5 6 7 8 9
+28:        1 1 3 4 5 6 7 8 10
+29:        2 3 4 5 6 7 9 9
+30:        1 2 3 4 5 6 8 8 8
+31:        1 2 3 4 5 7 7 7 9
+32:        1 2 3 4 6 6 6 8 9
+33:        1 2 3 5 5 5 7 8 9
+34:        1 2 4 4 4 6 7 8 9
+35:        1 3 3 3 5 6 7 8 9
+36:        2 2 2 4 5 6 7 8 9
+37:        1 1 1 3 4 5 6 7 8 9
+38:        2 3 4 5 6 7 8 10
+49:        1 2 3 4 5 6 7 9 8
+
+Question 2.2 On paper (or in README) write down the variable declarations for the instance variable(s) for your SolitaireBoard class.
+private int numElement; // number of elements in the array must be <= NUM_FINAL_PILES
+
+Question 2.3 On paper (or in README) for each of the following, either (1) show a diagram of what the corresponding SolitaireBoard will look like internally, including array indices, values, capacity and size (you don't have to show every last element, but may use ". . ." in places). To say it another way, what will the inside of a SolitaireBoard object look like for that board configuration. Or, (2) if that sequence is not a legal board configuration, say so:
+1. 1 2 3 4 5 6 7 9 8
+2. False
+3. 45 -> 1 2 3 4 5 6 7 8 9
+4. False
+5. 1 1 1 . . . 1 [repeated 45 times] -> 45 -> 1 2 3 4 5 6 7 8 9
+6. False -> Each pile must have at least one card and the total number of cards must be 45
+7. 1 0 44 -> False -> Each pile must have at least one card and the total number of cards must be 45
+
+Exercise 3 (1 checkoff point)
+/**
+* Invariant:
+* 1. number of card in each empty pile should be == 0 and stored in position >= numElement and < NUM_FINAL_PILES
+* 2. number of elemments in the array should be 0 < array length < NUM_FINAL_PILES
+* 3. number of cards in each non-empty pile should be > 0
+* 4. sum of elements in the array should be == CARD_TOTAL
+*/
+
+Exercise 4 (1 checkoff point)
