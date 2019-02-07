@@ -50,7 +50,7 @@ Question 4.1 Give two examples of other possible things we could type in to caus
 
 Question 4.2 Write down an equivalent statement with more parentheses to show the grouping (i.e., associativity) of the "." operators, that is, to show what part of the expression gets evaluated first. Hint: if you think about it, only one grouping makes sense.
     nums.valuesGT(threshold).printVals();
-    nums(valuesGT(threshold)printVals())
+    (nums.valuesGT(threshold)).printVals())
     First evaluate nums, and call the valuesGT function wiht intput threshold. valuesGT function will create a new Nums. Last, call printVals() function of this new Nums.
 
 Question 4.3 What is the type of the innermost sub-expression you put parentheses around (i.e., the one that gets evaluated first)?
