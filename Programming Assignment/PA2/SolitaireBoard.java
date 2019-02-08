@@ -113,24 +113,44 @@ public class SolitaireBoard {
       and the new pile will be at the end.
    */
    public void playRound() {
+      // Add element in the numberOfElements - 1 position and numberOfElements++;
+      numberArray[numberOfElements] = numberOfElements+1;
+      numberOfElements = numberOfElements + 1;
       int tmp = numberOfElements;
       // update array
-      for(int i = 0; i < numberOfElements; i++){
-         if(numberArray[i] > 1){
+      int j = 0;
+      for(int i = 0; i < tmp; i++){
+         if(numberArray[j] > 1){
             // if ith term > 1, numberArray[i] = numberArray[i] - 1;
-            numberArray[i] = numberArray[i] - 1;
+            numberArray[j] = numberArray[j] - 1;
+            j++;
          }else{
+            if(j == numberOfElements){
+               break;
+            }
             // if ith term = 1, numberArray[i] = the last element in the array -1;
-            numberArray[i] = numberArray[numberOfElements-1] - 1;
+            int numm = numberArray[numberOfElements-1];
+            numberArray[j] = numm - 1;
+            
+            if(numberArray[j] > 0){
+               j++;
+            }
+            
+            if(numberArray[j] == -1){
+               numberArray[j] = 0;
+               numberOfElements = numberOfElements - 1;
+               break;
+            }
+
             numberArray[numberOfElements-1] = 0;
             // Update numberOfElements
             numberOfElements = numberOfElements - 1;
          }
-      }
-      // Add element in the numberOfElements - 1 position and numberOfElements++;
-      numberArray[numberOfElements] = tmp;
-      numberOfElements = numberOfElements + 1;
 
+
+      }
+
+      // System.out.println(configString());
       // helper();
       // Check is playround valid
       assert isValidSolitaireBoard();   // sample assert statement (you will be adding more of these calls)
@@ -145,27 +165,13 @@ public class SolitaireBoard {
       if(numberOfElements != NUM_FINAL_PILES){
          return false;
       }
-      int j = 0;   // position bar
+      boolean[] numberChecker = new boolean[numberOfElements];
       for(int i = 0; i < numberOfElements; i++){
-         int tmp = numberArray[j];
-         if(tmp > NUM_FINAL_PILES){
-            // if tmp > NUM_FINAL_PILES -> return false
+         if(numberArray[i] > NUM_FINAL_PILES || numberChecker[numberArray[i]-1] == true){
+            // Check if numberArray[i] > NUM_FINAL_PILES and numberArray[i] is already shown
             return false;
          }
-         if(tmp <= 0){
-            return false;
-         }
-
-         if(tmp != j+1){
-            if(tmp == numberArray[tmp-1]){
-               return false;
-            }else{
-               numberArray[j] = numberArray[tmp-1];
-               numberArray[tmp-1] = tmp;
-            }
-         }else{
-            j++;
-         }
+         numberChecker[numberArray[i]-1] = true;
       }
       return true;  // dummy code to get stub to compile
    }
@@ -196,25 +202,25 @@ public class SolitaireBoard {
       for(int i = 0; i < numberOfElements; i++){
          // Check number of cards in each non-empty pile should be > 0 <= 45
          if(numberArray[i] <= 0 || numberArray[i] > 45){
-            // System.out.println("Error: numberArray[" + i + "] == 0"  );
+            System.out.println("Error: numberArray[" + i + "] == 0"  );
             return false;
          }
          sum = sum + numberArray[i];
       }
       // Check sum: sum of elements in the array should be == CARD_TOTAL
       if(sum != CARD_TOTAL){
-         // System.out.println("Error: sum != " + CARD_TOTAL);
+         System.out.println("Error: sum != " + CARD_TOTAL);
          return false;
       }
       // Check number of elemments in the array should be 0 < num of piles <= CARD_TOTAL
       if(numberOfElements <= 0 || numberOfElements > CARD_TOTAL){
-         // System.out.println("Error: numberofElements wrong");
+         System.out.println("Error: numberofElements wrong");
          return false;
       }
       // Check number of card in each empty pile should be == 0 and stored in position >= numElement and < NUM_FINAL_PILES
       for(int i = numberOfElements; i < numberArray.length; i++){
          if(numberArray[i] != 0){
-            // System.out.println("Error: numberArray[" + i + "] != 0"  );
+            System.out.println("Error: numberArray[" + i + "] != 0" );
             return false;
          }
       }
