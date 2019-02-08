@@ -5,7 +5,7 @@
 
 
 /**
-   <add main program comment here>
+* 
 */
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -26,15 +26,19 @@ public class BulgarianSolitaireSimulator {
          }
       }
 
-      // <add code here>
       SolitaireBoard sb = new SolitaireBoard();
-      setupSimulator(userConfig, singleStep, sb);
-      String string = sb.configString();
-      System.out.println(string);
+      setupSimulator(userConfig, sb);     // init. the SolitaireBoard object 
+      runGame(singleStep, sb);            // Run the SolitaireBoard game.
+      
    }
    
    // <add private static methods here>
-   private static void setupSimulator(boolean userConfig, boolean singleStep, SolitaireBoard sb){
+   /**
+    * This function is used to set up or init. the SolitaireBoard
+    * @param userConfig: user input option. If true: prompt user to enter the array 
+    * @param sb: SolitaireBoard class object
+    */
+   private static void setupSimulator(boolean userConfig, SolitaireBoard sb){
       if(userConfig){
          Scanner sc = new Scanner(System.in);    // Init. input Scanner
          String string = "";
@@ -102,6 +106,45 @@ public class BulgarianSolitaireSimulator {
             }
          }
       }
+   }
+
+   /**
+    * This function is used to run game
+    * @param singleStep: if true, user must enter return in the keyboard to cont. the game
+    * @param sb: the initialized SolitaireBoard object.
+    */
+
+   private static void runGame(boolean singleStep, SolitaireBoard sb){
+      System.out.print("Initial configuration: ");
+      System.out.println(sb.configString());
+      int tracker = 1;
+
+      if(singleStep){
+         Scanner sc = new Scanner(System.in);
+         sb.playRound();
+         System.out.print("[" + tracker + "] Current configuration: ");
+         System.out.println(sb.configString());
+         tracker++;
+         while(!sb.isDone()){
+            System.out.print("<Type return to continue>");
+            sc.nextLine();
+            sb.playRound();
+            System.out.print("[" + tracker + "] Current configuration: ");
+            System.out.println(sb.configString());
+            tracker++;
+         }
+
+      }
+      else{
+         while(!sb.isDone()){
+            sb.playRound();
+            System.out.print("[" + tracker + "] Current configuration: ");
+            System.out.println(sb.configString());
+            tracker++;
+         }
+      }
+      System.out.println("Done!");
+
    }
 
   

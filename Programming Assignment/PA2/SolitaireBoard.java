@@ -30,10 +30,11 @@ public class SolitaireBoard {
    
    
    /**
-      Representation invariant:
-
-      <put rep. invar. comment here>
-
+   * Invariant:
+   * 1. number of card in each empty pile should be == 0 and stored in position >= numElement and < NUM_FINAL_PILES
+   * 2. number of elemments in the array should be 0 < num of piles <= NUM_FINAL_PILES
+   * 3. number of cards in each non-empty pile should be > 0 <= 45
+   * 4. sum of elements in the array should be == CARD_TOTAL
    */
    
    // <add instance variables here>
@@ -112,21 +113,61 @@ public class SolitaireBoard {
       and the new pile will be at the end.
    */
    public void playRound() {
+      int tmp = numberOfElements;
+      // update array
+      for(int i = 0; i < numberOfElements; i++){
+         if(numberArray[i] > 1){
+            // if ith term > 1, numberArray[i] = numberArray[i] - 1;
+            numberArray[i] = numberArray[i] - 1;
+         }else{
+            // if ith term = 1, numberArray[i] = the last element in the array -1;
+            numberArray[i] = numberArray[numberOfElements-1] - 1;
+            numberArray[numberOfElements-1] = 0;
+            // Update numberOfElements
+            numberOfElements = numberOfElements - 1;
+         }
+      }
+      // Add element in the numberOfElements - 1 position and numberOfElements++;
+      numberArray[numberOfElements] = tmp;
+      numberOfElements = numberOfElements + 1;
 
-
+      // helper();
+      // Check is playround valid
+      assert isValidSolitaireBoard();   // sample assert statement (you will be adding more of these calls)
    }
-   
+
    /**
       Returns true iff the current board is at the end of the game.  That is, there are NUM_FINAL_PILES
       piles that are of sizes 1, 2, 3, . . . , NUM_FINAL_PILES, in any order.
    */
    
    public boolean isDone() {
-      
-     
-      return false;  // dummy code to get stub to compile
+      if(numberOfElements != NUM_FINAL_PILES){
+         return false;
+      }
+      int j = 0;   // position bar
+      for(int i = 0; i < numberOfElements; i++){
+         int tmp = numberArray[j];
+         if(tmp > NUM_FINAL_PILES){
+            // if tmp > NUM_FINAL_PILES -> return false
+            return false;
+         }
+         if(tmp <= 0){
+            return false;
+         }
 
-      
+         if(tmp != j+1){
+            if(tmp == numberArray[tmp-1]){
+               return false;
+            }else{
+               numberArray[j] = numberArray[tmp-1];
+               numberArray[tmp-1] = tmp;
+            }
+         }else{
+            j++;
+         }
+      }
+      return true;  // dummy code to get stub to compile
    }
 
    
@@ -151,13 +192,47 @@ public class SolitaireBoard {
       (See representation invariant comment for more details.)
    */
    private boolean isValidSolitaireBoard() {
-      
-      return false;  // dummy code to get stub to compile
+      int sum = 0;
+      for(int i = 0; i < numberOfElements; i++){
+         // Check number of cards in each non-empty pile should be > 0 <= 45
+         if(numberArray[i] <= 0 || numberArray[i] > 45){
+            // System.out.println("Error: numberArray[" + i + "] == 0"  );
+            return false;
+         }
+         sum = sum + numberArray[i];
+      }
+      // Check sum: sum of elements in the array should be == CARD_TOTAL
+      if(sum != CARD_TOTAL){
+         // System.out.println("Error: sum != " + CARD_TOTAL);
+         return false;
+      }
+      // Check number of elemments in the array should be 0 < num of piles <= CARD_TOTAL
+      if(numberOfElements <= 0 || numberOfElements > CARD_TOTAL){
+         // System.out.println("Error: numberofElements wrong");
+         return false;
+      }
+      // Check number of card in each empty pile should be == 0 and stored in position >= numElement and < NUM_FINAL_PILES
+      for(int i = numberOfElements; i < numberArray.length; i++){
+         if(numberArray[i] != 0){
+            // System.out.println("Error: numberArray[" + i + "] != 0"  );
+            return false;
+         }
+      }
+
+      return true;  // dummy code to get stub to compile
 
    }
    
 
    // <add any additional private methods here>
+   // helper function used to debug.
+   private void helper(){
+      String string = "";
+      for(int i = 0; i < numberArray.length; i++){
+         string = string + numberArray[i] + " ";
+      }
+      System.out.println(string);
+   }
 
 
 }
