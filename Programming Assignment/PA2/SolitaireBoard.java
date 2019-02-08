@@ -4,6 +4,7 @@
 // Spring 2019
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /*
   class SolitaireBoard
@@ -36,26 +37,71 @@ public class SolitaireBoard {
    */
    
    // <add instance variables here>
-  
+   private int[] numberArray;
+   private int numberOfElements;
  
    /**
       Creates a solitaire board with the configuration specified in piles.
       piles has the number of cards in the first pile, then the number of cards in the second pile, etc.
       PRE: piles contains a sequence of positive numbers that sum to SolitaireBoard.CARD_TOTAL
+      This function is never used in the program
    */
    public SolitaireBoard(ArrayList<Integer> piles) {
-
-
+      // Init. numberArray
+      numberArray = new int[CARD_TOTAL];
+      // Init. number of elements will in the numberArray
+      numberOfElements = piles.size();
+      
+      // Init. numberArray
+      for(int i = 0; i < piles.size(); i++){
+         numberArray[i] = piles.get(i);
+      }
+   
       assert isValidSolitaireBoard();   // sample assert statement (you will be adding more of these calls)
    }
  
-   
+   /**
+    * This function is used to set up SolitaireBoard 
+    * @param piles: input user enter SolitaireBoard
+   */
+   public void initSolitaireBoard(ArrayList<Integer> piles){
+      // Init. numberArray
+      numberArray = new int[CARD_TOTAL];
+      // Init. number of elements will in the numberArray
+      numberOfElements = piles.size();
+
+      // Init. numberArray
+      for(int i = 0; i < piles.size(); i++){
+         numberArray[i] = piles.get(i);
+      }
+
+      assert isValidSolitaireBoard();   // sample assert statement (you will be adding more of these calls)
+   }
+
    /**
       Creates a solitaire board with a random initial configuration.
    */
    public SolitaireBoard() {
+      // Init. numberArray
+      numberArray = new int[CARD_TOTAL];
+      // Random number init. 
+      Random random = new Random();     
+      // Init. remain number of cards can be used to card_total <- keep track
+      int numRemain = CARD_TOTAL;
+      // Init. a tracking number
+      int i = 0;
 
+      while(numRemain != 0){
+         int num = random.nextInt(numRemain)+1;
+         numRemain = numRemain - num;
+         numberArray[i] = num;
+         i++;
+      }
 
+      // Init. numberofElements
+      numberOfElements = i;
+
+      assert isValidSolitaireBoard();   // sample assert statement (you will be adding more of these calls)
    }
   
    
@@ -91,7 +137,12 @@ public class SolitaireBoard {
    */
    public String configString() {
 
-      return "";   // dummy code to get stub to compile
+      String string = "";
+      for(int i = 0; i < numberOfElements; i++){
+         string = string + numberArray[i] + " ";
+      }
+
+      return string;  
    }
    
    
