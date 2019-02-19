@@ -1,5 +1,5 @@
-Name: 
-USC NetID:
+Name: Zifan Wang   
+USC NetID: 9505587296
 CSCI 455 PA2
 Spring 2019
 
@@ -15,7 +15,7 @@ other students in the course."
 
 Initial below to "sign" the above statement:
 
-
+ZW
 ----------------------------------------------
 ACKNOWLEDGE ANY OUTSIDE SOURCES
 
@@ -25,9 +25,10 @@ textbook.  Be specific about what methods or algorithms are involved,
 and what sections of the textbook are involved (if applicable): [you do
 not need to list any of the code that we wrote for the assignment,
 i.e., the contents of the starter files for the assignment]
-
-
-
+1. SolitaireBoard.java uses ideas from Horstmann, Section 7.1.4, 7.3 Partially-filled arrays.
+2. SolitaireBoard.java uses ideas from Horstmann, Special topic 11.6, Assert statement.
+3. BulgarianSolitaireSimulator.java uses ideas from Horstmann, Section 11.2 Text Input and Output.
+4. SolitaireBoard.java and BulgarianSolitaireSimulator.java are provided start code from prof. Bono
 ----------------------------------------------
 KNOWN BUGS or LIMITATIONS:
 

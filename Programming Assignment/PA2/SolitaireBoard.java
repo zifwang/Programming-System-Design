@@ -1,5 +1,5 @@
-// Name:
-// USC NetID:
+// Name: Zifan Wang 
+// USC NetID: 9505587296
 // CSCI455 PA2
 // Spring 2019
 
@@ -92,6 +92,7 @@ public class SolitaireBoard {
       // Init. a tracking number
       int i = 0;
 
+      // Use random function to initalize the numberArray
       while(numRemain != 0){
          int num = random.nextInt(numRemain)+1;
          numRemain = numRemain - num;
@@ -136,6 +137,7 @@ public class SolitaireBoard {
                j++;
             }
             
+            // Handling the last 0 element
             if(numberArray[j] == -1){
                numberArray[j] = 0;
                numberOfElements = numberOfElements - 1;
@@ -153,7 +155,7 @@ public class SolitaireBoard {
       // System.out.println(configString());
       // helper();
       // Check is playround valid
-      assert isValidSolitaireBoard();   // sample assert statement (you will be adding more of these calls)
+      assert isValidSolitaireBoard();   // assert statement to see the playRound function is valid or not after one round
    }
 
    /**
@@ -162,10 +164,11 @@ public class SolitaireBoard {
    */
    
    public boolean isDone() {
+      // if numberOfElements != NUM_FINAL_PILES, the process has not finished
       if(numberOfElements != NUM_FINAL_PILES){
          return false;
       }
-      boolean[] numberChecker = new boolean[numberOfElements];
+      boolean[] numberChecker = new boolean[numberOfElements];       // A boolean array: store whether the number is shown or not.
       for(int i = 0; i < numberOfElements; i++){
          if(numberArray[i] > NUM_FINAL_PILES || numberChecker[numberArray[i]-1] == true){
             // Check if numberArray[i] > NUM_FINAL_PILES and numberArray[i] is already shown
@@ -173,7 +176,7 @@ public class SolitaireBoard {
          }
          numberChecker[numberArray[i]-1] = true;
       }
-      return true;  // dummy code to get stub to compile
+      return true;
    }
 
    
@@ -183,9 +186,9 @@ public class SolitaireBoard {
       The numbers represent the number of cards in each non-empty pile.
    */
    public String configString() {
-
-      String string = "";
+      String string = "";   // Create a output string
       for(int i = 0; i < numberOfElements; i++){
+         // Format the output string
          string = string + numberArray[i] + " ";
       }
 
@@ -225,20 +228,20 @@ public class SolitaireBoard {
          }
       }
 
-      return true;  // dummy code to get stub to compile
+      return true; 
 
    }
    
 
    // <add any additional private methods here>
    // helper function used to debug.
-   private void helper(){
-      String string = "";
-      for(int i = 0; i < numberArray.length; i++){
-         string = string + numberArray[i] + " ";
-      }
-      System.out.println(string);
-   }
+   // private void helper(){
+   //    String string = "";
+   //    for(int i = 0; i < numberArray.length; i++){
+   //       string = string + numberArray[i] + " ";
+   //    }
+   //    System.out.println(string);
+   // }
 
 
 }
