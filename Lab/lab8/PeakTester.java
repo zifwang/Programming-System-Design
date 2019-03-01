@@ -18,33 +18,41 @@ public class PeakTester {
    public static boolean hasPeak(LinkedList<Integer> list) {
       if(list.size() == 0 || list.size() == 1 || list.size() == 2) return false;
 
-      ListIterator iter = list.listIterator();
-      int[] myArr = new int[list.size()];
+      ListIterator iter_left = list.listIterator();
+      ListIterator iter_right = list.listIterator(list.size());
+
       boolean result = false;
-      int position = 0;
+      int position_left = 1;
+      int position_right = list.size()-1;
       int left_peak = 0;
-      int right_peak = myArr.length-1;
+      int right_peak = list.size()-1;
+      int num_left_prev = (int)iter_left.next();
+      int num_right_prev = (int)iter_right.previous();
 
-      while(iter.hasNext()){
-        myArr[position] = (int)iter.next();
-        position++;
-      }
+      while(iter_left.hasNext()){
 
-
-      // Left peak
-      for(int i = 1; i < myArr.length; i++){
-        if(myArr[i-1] > myArr[i]){
-          left_peak = i-1;
+        int num_left = (int)iter_left.next();
+        // System.out.print(num_left + " ");
+        // System.out.println(position_left);
+        if(num_left_prev > num_left){
+          // System.out.println(num_left_prev + " " + num_left);
+          left_peak = position_left-1;
+          // System.out.println(left_peak);
           break;
         }
+        position_left++;
+        num_left_prev = num_left;
+        // System.out.println();
       }
 
-      // right peak
-      for(int i = myArr.length-1; i > 0; i--){
-        if(myArr[i-1] < myArr[i]){
-          right_peak = i;
+      while(iter_right.hasPrevious()){
+        int num_right = (int)iter_right.previous();
+        if(num_right < num_right_prev){
+          right_peak = position_right;
           break;
         }
+        position_right--;
+        num_right_prev = num_right;
       }
 
       // Compare
