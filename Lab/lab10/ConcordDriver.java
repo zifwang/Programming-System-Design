@@ -21,7 +21,7 @@ public class ConcordDriver {
 		
       concord.print(System.out);
 
-      //     	concord.printSorted(System.out);
+      concord.printSorted(System.out);
 		
    }
 

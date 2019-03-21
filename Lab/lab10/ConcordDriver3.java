@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.Map;
+import java.util.HashSet;
 
 /**
  * Finds frequency of each word in a file.  
@@ -31,10 +32,56 @@ public class ConcordDriver3 {
 		
 
       // add code here to print out the selected entries
-		
+		concord.printSatisfying(System.out, new largeThreshold(threshold));
    }
 
 }
 
 
+// // add new class here
+// // Test whether the lenght is less than input threshold
+// class lengthTest implements Predicate{
+//    private int threshold;     // instance variable
+
+//    /**
+//     * Constructor: Take in threshold input
+//     */
+//    public lengthTest(int threshold){
+//       this.threshold = threshold;
+//    }
+
+//    /**
+//     * predicate function
+//     */
+//    public boolean predicate(Map.Entry<String,Integer> entry){
+//       String word = entry.getKey();
+//       Map<String,Integer> numCharOccur = new Map<String,Integer>();
+//       for(int i = 0; i < word.lenght(); i++){
+//          char c = word.charAt(i);
+
+//       }
+//    }
+
+
+// }
+
 // add new class here
+// Test whether the lenght is more than input threshold
+class largeThreshold implements Predicate{
+   private int threshold;     // instance variable
+
+   /**
+    * Constructor: Take in threshold input
+    */
+   public largeThreshold(int threshold){
+      this.threshold = threshold;
+   }
+
+   /**
+    * predicate function
+    */
+   public boolean predicate(Map.Entry<String,Integer> entry){
+      if(entry.getKey().length() >= threshold) return true;
+      return false;
+   }
+}

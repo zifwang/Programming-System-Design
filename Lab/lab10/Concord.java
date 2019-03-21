@@ -22,6 +22,16 @@ import java.util.Comparator;
 public class Concord {
 	
    private Map<String, Integer> concord;
+
+   /**
+    * Override comparator function to build my comparator for this lab. Number in decreasing order.
+   */
+   Comparator<Map.Entry<String,Integer>> entryComparator = new Comparator<Map.Entry<String,Integer>>() {
+      @Override
+      public int compare(Map.Entry<String,Integer> entry1, Map.Entry<String,Integer> entry2){
+         return entry2.getValue() - entry1.getValue();
+      }
+   };
 	
    /**
     * Creates empty concordance
@@ -83,7 +93,17 @@ public class Concord {
     * @param out where to write the results.
     */
    public void printSorted(PrintStream out) {
+      // ArrayList<Map.Entry<String,Integer>> sortedByNumOccurences = new ArrayList(concord.entrySet());
+      ArrayList<Map.Entry<String,Integer>> sortedByNumOccurences = new ArrayList<>();
+      for(Map.Entry<String,Integer> curr : concord.entrySet()){
+         sortedByNumOccurences.add(curr);          // add current entry to arraylist
+      }
 
+      // Sort
+      Collections.sort(sortedByNumOccurences,entryComparator);
+      for(Map.Entry<String,Integer> curr : sortedByNumOccurences){
+         out.println(curr.getKey() + " " + curr.getValue());
+      }
    }
 	
    // NOTE: printSatisfying only used in Ex. 3
