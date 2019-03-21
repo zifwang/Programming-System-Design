@@ -1,9 +1,9 @@
-// Name:
-// USC NetID:
+// Name: Zifan Wang 
+// USC NetID: 9505587296
 // CS 455 PA3
 // Spring 2019
 
-
+import java.util.Random;
 /** 
    MineField
       class with locations of mines for a game.
@@ -14,8 +14,12 @@
 public class MineField {
    
    // <put instance variables here>
-   
-   
+   // number of rows & columns & mines this minefield will have
+   private int numRows;
+   private int numCols;
+   private int numMines; 
+   // MineField -> 2D boolean array: false -> no mine. true -> mine.
+   private boolean[][] mineField;
    
    /**
       Create a minefield with same dimensions as the given array, and populate it with the mines in the array
@@ -24,7 +28,17 @@ public class MineField {
     * @param mineData  the data for the mines; must have at least one row and one col.
     */
    public MineField(boolean[][] mineData) {
-      
+      numRows = mineData.length;
+      numCols = mineData[0].length;
+      numMines = 0;
+      mineField = new boolean[mineData.length][mineData[0].length];        // Create mineField with the same size as mineData
+      // Assign mineField with mineData
+      for(int i = 0; i < mineData.length; i++){
+         for(int j = 0; j < mineData[0].length; j++){
+            mineField[i][j] = mineData[i][j];
+            if(mineData[i][j] == true) numMines++;
+         }
+      }
    }
    
    
@@ -38,7 +52,10 @@ public class MineField {
       PRE: numRows > 0 and numCols > 0 and 0 <= numMines < (1/3 of total number of field locations). 
     */
    public MineField(int numRows, int numCols, int numMines) {
-      
+      this.numRows = numRows;       // init. number of rows in the minefield
+      this.numCols = numCols;       // init. number of cols in the minefield
+      this.numMines = numMines;     // inti. number of mines in the minefield
+      mineField = new boolean[numRows][numCols];   // declare a mine Field
    }
    
 
@@ -50,7 +67,25 @@ public class MineField {
       PRE: inRange(row, col)
     */
    public void populateMineField(int row, int col) {
-      
+      assert inRange(row, col);
+      resetEmpty();                       // rest the mines field.
+      boolean isEnd = false;              // Set a check flag to see whether init. is ends
+      Random rand = new Random();         // declare a random number to generate mines
+      int x = 0;                          // Declare a x location mine
+      int y = 0;                          // Declare a y location mine
+      int tracker = 0;                    // track number of generated mine
+
+      while(!isEnd){
+         x = rand.nextInt(numRows);       // Random location x
+         y = rand.nextInt(numCols);       // Random location y
+         if(x != row || y != col){
+            if(mineField[x][y] != true){
+               mineField[x][y] = true;
+               tracker++;
+            }
+         }
+         if(tracker == numMines) isEnd = true;  // If tracker == totoal number of mines, ->isEnd = true;
+      }
    }
    
    
@@ -60,7 +95,12 @@ public class MineField {
       Note: This is the state the minefield is in at the beginning of a game.
     */
    public void resetEmpty() {
-      
+      // for(int i = 0; i < mineField.length; i++){
+      //    for(int j = 0; j < mineField[0].length; j++){
+      //       mineField[i][j] = false;      // set to all false which means does not contain mines.
+      //    }
+      // }
+      mineField = new boolean[numRows][numCols];  // create a new mineField
    }
 
    
@@ -74,7 +114,21 @@ public class MineField {
      PRE: inRange(row, col)
    */
    public int numAdjacentMines(int row, int col) {
-      return 0;       // DUMMY CODE so skeleton compiles
+      assert inRange(row, col);
+      int numberofMines = 0;
+      for(int i = row-1; i <= row+1; i++){
+         for(int j = col-1; j <= col+1; j++){
+            if(i < 0 || j < 0 || i >= numRows || j >= numCols) continue;
+            if(mineField[i][j] == true){
+               numberofMines++;
+            }
+         }
+      }
+      if(mineField[row][col] == true){
+         numberofMines = numberofMines - 1;
+      }
+      // System.out.println(numberofMines);
+      return numberofMines;
    }
    
    
@@ -86,7 +140,10 @@ public class MineField {
       @return whether (row, col) is a valid field location
    */
    public boolean inRange(int row, int col) {
-      return false;       // DUMMY CODE so skeleton compiles
+      if(row >= 0 && row < numRows && col >= 0 && col < numCols){
+         return true;
+      }
+      return false;
    }
    
    
@@ -95,7 +152,7 @@ public class MineField {
       @return number of rows in the field
    */  
    public int numRows() {
-      return 0;       // DUMMY CODE so skeleton compiles
+      return numRows;      
    }
    
    
@@ -104,7 +161,7 @@ public class MineField {
       @return number of columns in the field
    */    
    public int numCols() {
-      return 0;       // DUMMY CODE so skeleton compiles
+      return numCols;
    }
    
    
@@ -116,7 +173,8 @@ public class MineField {
       PRE: inRange(row, col)   
    */    
    public boolean hasMine(int row, int col) {
-      return false;       // DUMMY CODE so skeleton compiles
+      assert inRange(row,col);
+      return mineField[row][col];
    }
    
    
@@ -127,7 +185,8 @@ public class MineField {
     * @return
     */
    public int numMines() {
-      return 0;       // DUMMY CODE so skeleton compiles
+      // System.out.println(numMines);
+      return numMines;
    }
 
    

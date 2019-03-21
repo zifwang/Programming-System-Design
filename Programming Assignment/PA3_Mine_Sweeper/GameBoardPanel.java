@@ -50,13 +50,42 @@ class GameBoardPanel extends JPanel {
     */
       
    private static final int BORDER_THICKNESS = 1;
+   // Creates a border with a raised beveled edge, using brighter shades of the component's current background color for highlighting, and darker shading for shadows.
+   // Return the Border object
    private static final Border COVERED_BORDER = BorderFactory.createRaisedBevelBorder();
+
+   // Creates a border with a lowered beveled edge, using brighter shades of the component's current background color for highlighting, and darker shading for shadows.
+   // Return the Border object
    private static final Border UNCOVERED_BORDER = BorderFactory.createLoweredBevelBorder();
 
+   /**
+    * Creates an empty border that takes up space but which does no drawing, specifying the width of the top, left, bottom, and right sides.
+    * Parameters:
+    *          top - an integer specifying the width of the top, in pixels
+    *          left - an integer specifying the width of the left side, in pixels
+    *          bottom - an integer specifying the width of the bottom, in pixels
+    *          right - an integer specifying the width of the right side, in pixels
+    */
    private static final Border PADDING = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+   /**
+    * Creates a new Font from the specified name, style and point size.
+    * Parameters:
+    *          String name: This can be a font face name or a font family name, and may represent either a logical font or a physical font found in this GraphicsEnvironment. 
+    *                       The family names for logical fonts are: Dialog, DialogInput, Monospaced, Serif, or SansSerif. Pre-defined String constants exist for all of these names, for example, DIALOG. 
+    *                       If name is null, the logical font name of the new Font as returned by getName() is set to the name "Default".
+    *          style: the style constant for the Font The style argument is an integer bitmask that may be PLAIN, or a bitwise union of BOLD and/or ITALIC (for example, ITALIC or BOLD|ITALIC). 
+    *                 If the style argument does not conform to one of the expected integer bitmasks then the style is set to PLAIN.
+    *          size:  the point size of the Font. --> here set to 24
+    */
    private static final Font DEFAULT_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 24);
-   private static final Font INCORRECT_GUESS_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 36);
+   private static final Font INCORRECT_GUESS_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 36);  // Displayed the lost
 
+   /**
+    * Color setting:
+    *    The red one -> the mine they clicked on
+    *    The yellow one -> right click puts it as a mine guess 
+    *    The black one -> are mines that the player hadn't yet guessed at the point that they lost.
+    */
    private static final Color EXPLODED_MINE_COLOR = Color.RED;
    private static final Color MINE_COLOR = Color.BLACK;
    private static final Color MINE_GUESS_COLOR = Color.YELLOW;

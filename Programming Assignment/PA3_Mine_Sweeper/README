@@ -1,5 +1,5 @@
-Name: 
-USC NetID:
+Name: Zifan Wang
+USC NetID: 9505587296
 CSCI 455 PA3
 Spring 2019
 
@@ -15,7 +15,7 @@ other students in the course."
 
 Initial below to "sign" the above statement:
 
-
+ZW
 ----------------------------------------------
 ACKNOWLEDGE ANY OUTSIDE SOURCES
 
@@ -25,7 +25,11 @@ textbook.  Be specific about what methods or algorithms are involved,
 and what sections of the textbook are involved (if applicable): [you do
 not need to list any of the code that we wrote for the assignment,
 i.e., the contents of the starter files for the assignment]
-
+1. MineSweeper.java is provided stater code from Prof. Bono
+2. MineSweeperFixed.java is provided stater code from Prof. Bono
+3. GameBoardPanel.java is provided stater code from Prof. Bono
+4. VisibleField.java is provided stater code from Prof. Bono
+5. MineField.java is provided stater code from Prof. Bono
 
 
 ----------------------------------------------

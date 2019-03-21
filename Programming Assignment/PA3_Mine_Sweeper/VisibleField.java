@@ -1,5 +1,5 @@
-// Name:
-// USC NetID:
+// Name: Zifan Wang 
+// USC NetID: 9505587296
 // CS 455 PA3
 // Spring 2019
 
@@ -25,9 +25,9 @@ public class VisibleField {
    // getStatus(row, col)).
    
    // Covered states (all negative values):
-   public static final int COVERED = -1;   // initial value of all squares
-   public static final int MINE_GUESS = -2;
-   public static final int QUESTION = -3;
+   public static final int COVERED = -1;        // initial value of all squares
+   public static final int MINE_GUESS = -2;     // number of Yellow square displayed in the game board
+   public static final int QUESTION = -3;       // number of question marks displayed in the game board
 
    // Uncovered states (all non-negative values):
    
@@ -39,7 +39,10 @@ public class VisibleField {
    // ----------------------------------------------------------   
   
    // <put instance variables here>
-   
+   private MineField mineField;
+   private int[][] mineFieldState;             // this is used to keep track the square states: COVERED, MINE_GUESS, QUESTION, UNCOVERED.
+   private int numofGuess;                     // number of guess. When user place a Yellow Square (mine flag), numofGuess++;
+   private boolean gameOverFlag;
 
    /**
       Create a visible field that has the given underlying mineField.
@@ -48,16 +51,31 @@ public class VisibleField {
       @param mineField  the minefield to use for for this VisibleField
     */
    public VisibleField(MineField mineField) {
-      
+      this.gameOverFlag = false;
+      this.mineField = mineField;
+      this.numofGuess = 0;
+      this.mineFieldState = new int[this.mineField.numRows()][this.mineField.numCols()];  // Init. state mineField.
+      for(int i = 0; i < this.mineField.numRows(); i++){
+         for(int j = 0; j < this.mineField.numCols(); j++){
+            mineFieldState[i][j] = COVERED;        // Init. all square is in the COVERED state.
+         }
+      }
    }
-   
    
    /**
       Reset the object to its initial state (see constructor comments), using the same underlying
       MineField. 
    */     
    public void resetGameDisplay() {
-      
+      mineField.resetEmpty();    // Reset mineField
+      numofGuess = 0;            // Reset numMineLeft to 0 in mineField;
+      // Reset mineFieldState to COVERED State;
+      for(int i = 0; i < this.mineField.numRows(); i++){
+         for(int j = 0; j < this.mineField.numCols(); j++){
+            mineFieldState[i][j] = COVERED;        // Init. all square is in the COVERED state.
+         }
+      }
+      gameOverFlag = false;
    }
   
    
@@ -66,7 +84,7 @@ public class VisibleField {
       @return the minefield
     */
    public MineField getMineField() {
-      return null;       // DUMMY CODE so skeleton compiles
+      return mineField;       // DUMMY CODE so skeleton compiles
    }
    
    
@@ -79,7 +97,8 @@ public class VisibleField {
       PRE: getMineField().inRange(row, col)
     */
    public int getStatus(int row, int col) {
-      return 0;       // DUMMY CODE so skeleton compiles
+      assert getMineField().inRange(row, col);
+      return mineFieldState[row][col];
    }
 
    
@@ -90,8 +109,7 @@ public class VisibleField {
       @return the number of mines left to guess.
     */
    public int numMinesLeft() {
-      return 0;       // DUMMY CODE so skeleton compiles
-
+      return getMineField().numMines()-numofGuess;       // DUMMY CODE so skeleton compiles
    }
  
    
@@ -104,7 +122,28 @@ public class VisibleField {
       PRE: getMineField().inRange(row, col)
     */
    public void cycleGuess(int row, int col) {
-      
+      assert getMineField().inRange(row,col);
+      // System.out.println(mineFieldState[row][col]);
+      if(mineFieldState[row][col] == COVERED) {
+         mineFieldState[row][col] = MINE_GUESS;      // COVERED state to MINE_GUESS state
+         numofGuess++;                               // Update number of Guess
+         // printMineFieldState();
+         // System.out.println();
+      } 
+      else if(mineFieldState[row][col] == MINE_GUESS) {
+         mineFieldState[row][col] = QUESTION;         // MINE_GUESS state to QUESTION state
+         numofGuess--;                                // Update number of Guess
+         if(numofGuess < 0){
+            numofGuess = 0;
+         }
+         // printMineFieldState();
+         // System.out.println();
+      }
+      else if(mineFieldState[row][col] == QUESTION){ 
+         mineFieldState[row][col] = COVERED;        // QUESTION state to COVERED state
+         // printMineFieldState();
+         // System.out.println();
+      }
    }
 
    
@@ -123,7 +162,16 @@ public class VisibleField {
       PRE: getMineField().inRange(row, col)
     */
    public boolean uncover(int row, int col) {
-      return false;       // DUMMY CODE so skeleton compiles
+      assert mineField.inRange(row,col);
+
+      if(mineField.hasMine(row,col) == false){
+         floodFill(row,col);
+      }
+      else{
+         mineFieldState[row][col] = EXPLODED_MINE;
+         gameOverFlag = true;
+      }
+      return !mineField.hasMine(row,col);       
    }
  
    
@@ -133,7 +181,43 @@ public class VisibleField {
       @return whether game over
     */
    public boolean isGameOver() {
-      return false;       // DUMMY CODE so skeleton compiles
+      boolean flag = false;
+      int counter = 0;
+      boolean flag_all_uncover_is_true = false;
+      if(!gameOverFlag){
+         for(int i = 0; i < mineField.numRows(); i++){
+            for(int j = 0; j < mineField.numCols(); j++){
+               if(mineField.hasMine(i,j) == false && mineFieldState[i][j] >= 0){
+                  counter++;
+               }
+            }
+         }
+         if(counter == (mineField.numRows()*mineField.numCols()-mineField.numMines())) flag_all_uncover_is_true = true;
+      }
+
+      if(gameOverFlag){
+         for(int i = 0; i < mineField.numRows(); i++){
+            for(int j = 0; j < mineField.numCols(); j++){
+               // Find unLabeled mine and assign MINE;
+               if(mineField.hasMine(i,j) == true && mineFieldState[i][j] != MINE_GUESS && mineFieldState[i][j] != EXPLODED_MINE) mineFieldState[i][j] = MINE;
+               // Find incorrected label mine and assign INCORRECT_GUESS;
+               if(mineField.hasMine(i,j) == false && mineFieldState[i][j] == MINE_GUESS) mineFieldState[i][j] = INCORRECT_GUESS;
+            }
+         }
+         flag = true;
+      }
+
+      if(flag_all_uncover_is_true){
+         for(int i = 0; i < mineField.numRows(); i++){
+            for(int j = 0; j < mineField.numCols(); j++){
+               // Find unLabeled mine and assign MINE;
+               if(mineField.hasMine(i,j) == true) mineFieldState[i][j] = MINE_GUESS;
+            }
+         }
+         flag = true;
+      }
+
+      return flag;     // DUMMY CODE so skeleton compiles
    }
  
    
@@ -146,10 +230,49 @@ public class VisibleField {
       PRE: getMineField().inRange(row, col)
     */
    public boolean isUncovered(int row, int col) {
-      return false;       // DUMMY CODE so skeleton compiles
+      if(mineFieldState[row][col] >= 0) return true;
+      return false;
    }
    
  
    // <put private methods here>
+   // Flood-fill method to open empty square as much as possible
+   private void floodFill(int row, int col){
+      assert mineField.inRange(row,col);
+      if(row < 0 || col < 0 || row >= mineField.numRows() || col >= mineField.numRows()) return;
+      // if(mineFieldState[row][col] == MINE_GUESS) return;
+      // if(mineFieldState[row][col] == mineField.numAdjacentMines(row,col)) return;
+      // System.out.println(row+" "+col);
+      if(mineField.numAdjacentMines(row,col) != 0 && mineFieldState[row][col] == COVERED){
+         mineFieldState[row][col] = mineField.numAdjacentMines(row,col);
+         return;
+      }
+      if(mineField.numAdjacentMines(row,col) == 0 && mineFieldState[row][col] == COVERED){
+         mineFieldState[row][col] = mineField.numAdjacentMines(row,col);     
+         // Recursive call
+         floodFill(row-1,col-1);
+         floodFill(row-1,col);
+         floodFill(row-1,col+1);
+         floodFill(row,col-1);
+         floodFill(row,col+1);
+         floodFill(row+1,col-1);
+         floodFill(row+1,col);
+         floodFill(row+1,col+1);
+         // return floodFill(row-1,col-1)+floodFill(row-1,col)+floodFill(row-1,col+1)+floodFill(row,col-1)+floodFill(row,col+1)+floodFill(row+1,col-1)+floodFill(row+1,col)+floodFill(row+1,col+1);
+      }
+      return;
+   }
+
+   /**
+    * My Helper function to visualize the state of mineField
+    */
+   private void printMineFieldState(){
+      for(int i = 0; i < this.mineField.numRows(); i++){
+         for(int j = 0; j < this.mineField.numCols(); j++){
+            System.out.print(mineFieldState[i][j] + " ");
+         }
+         System.out.println();
+      }
+   }
    
 }

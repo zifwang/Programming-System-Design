@@ -17,9 +17,9 @@ public class MineSweeperFixed {
    
    private static boolean[][] smallMineField = 
       {{false, false, false, false}, 
-       {true, false, false, false}, 
-       {false, true, true, false},
-       {false, true, false, true}};
+       {false, false, false, false}, 
+       {false, false, false, true},
+       {false, false, true, true}};
    
    private static boolean[][] emptyMineField = 
       {{false, false, false, false}, 

@@ -14,10 +14,14 @@ import javax.swing.JFrame;
 
 public class MineSweeper {
    
+   // Declare a frame width & height
    private static final int FRAME_WIDTH = 400;
    private static final int FRAME_HEIGHT = 425;
    
+   // Number of grids
    private static int SIDE_LENGTH = 9;
+
+   // Total number of mines in the game
    private static int NUM_MINES = 10;
    
 
