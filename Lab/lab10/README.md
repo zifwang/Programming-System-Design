@@ -19,7 +19,7 @@ They are in the alphabet order. The reason is that the map we used is the TreeMa
 No. Since the Map is not in the order.s
 
 Question 3.1 Why don't we need to save the LargeWordPred object in a variable (second call above)?
-Because the testLarge is a class to implement interface to threshold word in length. We do not want to access or modify any data in the Predicate class. The only thing we want is the return true or false.
+Because the testLarge is a class to implement interface to threshold word in length. We do not want to access or modify any data in the Predicate class. And we only want to use the predicate once.
 
 Question 3.2 Using your results from your code and experiments above, answer the following questions: What are the longest non-hyphenated words occurring in each of melville.txt and poe.txt, how long are they, and how many times did each of them occur in the original file?
 melville.txt: length 20. cause-indigestion-the 1

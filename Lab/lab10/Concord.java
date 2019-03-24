@@ -93,11 +93,11 @@ public class Concord {
     * @param out where to write the results.
     */
    public void printSorted(PrintStream out) {
-      // ArrayList<Map.Entry<String,Integer>> sortedByNumOccurences = new ArrayList(concord.entrySet());
-      ArrayList<Map.Entry<String,Integer>> sortedByNumOccurences = new ArrayList<>();
-      for(Map.Entry<String,Integer> curr : concord.entrySet()){
-         sortedByNumOccurences.add(curr);          // add current entry to arraylist
-      }
+      ArrayList<Map.Entry<String,Integer>> sortedByNumOccurences = new ArrayList<>(concord.entrySet());
+      // ArrayList<Map.Entry<String,Integer>> sortedByNumOccurences = new ArrayList<>();
+      // for(Map.Entry<String,Integer> curr : concord.entrySet()){
+      //    sortedByNumOccurences.add(curr);          // add current entry to arraylist
+      // }
 
       // Sort
       Collections.sort(sortedByNumOccurences,entryComparator);
