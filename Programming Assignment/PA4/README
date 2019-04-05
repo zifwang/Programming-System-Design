@@ -1,5 +1,5 @@
-Name: 
-USC NetID: 
+Name: Zifan Wang   
+USC NetID: 9505587296
 CS 455 PA4
 Spring 2019
 
@@ -15,7 +15,7 @@ other students in the course."
 
 Initial below to "sign" the above statement:
 
-
+ZW
 ----------------------------------------------
 ACKNOWLEDGE ANY OUTSIDE SOURCES
 
@@ -25,7 +25,8 @@ textbook.  Be specific about what methods or algorithms are involved,
 and what sections of the textbook are involved (if applicable): [you do
 not need to list any of the code that we wrote for the assignment,
 i.e., the contents of the starter files for the assignment]
-
+AnagramDictionary.java and Rack.java are starter files provided by Prof. Bono.
+Thanks Prof. Bono for giving these two starter files for this programming assignment.
 
 
 ----------------------------------------------
@@ -35,8 +36,17 @@ KNOWN BUGS or LIMITATIONS:
 
 ----------------------------------------------
 DESCRIPTION OF YOUR CLASS DESIGN AND ALGORITHMS AND DATA STRUCTURES USED:
+1.AnagramDictionary.java creates a anagram dictionary which is used to provide input string's anagrams.
+This class uses Map data structure and ArrayList data structures.
 
+2.Rack.java finds all possible subset of input string. ArrayList and Map data structures are used in this file.
+The allSubsets method in this class uses recursion method to find all possible subset of an input string.
 
+3. ScoreTable.java has a public function: scoreTablePrint method to print all subset of an input string and their scores.
+The printing is in the order of their scores. In this class, Map and ArrayList are used. 
+
+4. WordFinder.java provides main function of this program. It contains some IO control. For example, it reads the name of 
+anagram dictionary and reads the Rack string. THe scanner is used in the program.
 
 ----------------------------------------------
 ANY OTHER NOTES FOR THE GRADER:

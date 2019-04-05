@@ -7,6 +7,12 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class WordFinder{
+    /**
+     * The main function of PA4. When user provides the anagram dictionary, it will check whether the dictionary exists or not.
+     * If yes, it will uses the dictionary provided by user. If not, the program will exit and return a file not found error.
+     * If user does not provide any anagram dictionary, it will use the default dictionary: sowpods.txt
+     * Then, the program will promote user to enter the rack string. Then, it will print the rank of all substring of input rack string.
+     */
     public static void main(String[] args){
         // Default dictionary to be sowpods.txt
         String dictionary = "sowpods.txt";

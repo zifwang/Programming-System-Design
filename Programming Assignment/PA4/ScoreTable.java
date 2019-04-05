@@ -62,7 +62,7 @@ public class ScoreTable {
         Collections.sort(sortedArray, comparator);
 
         // Print in order of occurance
-        System.out.println("we can make " + sortedArray.size()+" words from " + "\""+string+"\"");
+        System.out.println(" We can make " + sortedArray.size()+" words from " + "\""+string+"\"");
         if(sortedArray.size() > 0) {
             System.out.println("All of the words with their scores (sorted by score):");
             for(Map.Entry<String,Integer> entry : sortedArray){
