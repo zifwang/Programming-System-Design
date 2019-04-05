@@ -1,17 +1,49 @@
-// Name: 
-// USC NetID: 
+// Name: Zifan Wang 
+// USC NetID: 9505587296
 // CS 455 PA4
 // Spring 2019
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
    A Rack of Scrabble tiles
  */
 
 public class Rack {
-   
 
+   /**
+    * This function is to find all subsets of an input string
+    * @param str input string
+    * @return allSubsets(String unique, int[] mult, int k) Finds all subsets of the multiset starting at position k in unique and mult.
+    */
+   
+   public ArrayList<String> findAllSubsets(String str){
+      // remove all non letter chars
+      String modStr = str.replaceAll("\\W|\\d", "");
+      // Get sorted Input String
+      char[] sortedChars = modStr.toCharArray();
+      Arrays.sort(sortedChars);
+      // Create a map to store unique chars and their apperance 
+      Map<Character,Integer> charMap = new TreeMap<Character,Integer>();
+      // store and count
+      for(int i = 0; i < sortedChars.length; i++){
+         if(charMap.containsKey(sortedChars[i])) charMap.put(sortedChars[i],charMap.get(sortedChars[i])+1);
+         else charMap.put(sortedChars[i],1);
+      }
+      // a unique string
+      String unique = "";
+      // create a mult array which is the multiplicity of each letter from unique.  
+      int[] mult = new int[charMap.size()];
+      int index = 0;
+      for(Map.Entry<Character,Integer> entry : charMap.entrySet()){
+         unique = unique + entry.getKey();
+         mult[index] = entry.getValue();
+         index++;
+      }
+
+      // k = 0 means that smallest index of unique and mult to consider
+      return allSubsets(unique,mult,0);
+   }
 
 
    /**

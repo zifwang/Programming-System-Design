@@ -1,10 +1,10 @@
-// Name: 
-// USC NetID: 
+// Name: Zifan Wang 
+// USC NetID: 9505587296
 // CS 455 PA4
 // Spring 2019
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 
 /**
@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 
 public class AnagramDictionary {
-   
-
+   // private variable
+   private static Map<String,ArrayList<String>> mapAnagram;
 
    /**
       Create an anagram dictionary from the list of words given in the file
@@ -26,7 +26,8 @@ public class AnagramDictionary {
       @throws FileNotFoundException  if the file is not found
     */
    public AnagramDictionary(String fileName) throws FileNotFoundException {
-
+      mapAnagram = new HashMap<String,ArrayList<String>>();
+      fileReader(fileName);         // read file
    }
    
 
@@ -36,9 +37,52 @@ public class AnagramDictionary {
       @param s string to process
       @return a list of the anagrams of s
     */
-   public ArrayList<String> getAnagramsOf(String s) {
-      return new ArrayList<String>(); // DUMMY CODE TO GET IT TO COMPILE
+    public ArrayList<String> getAnagramsOf(String s) {
+      // sort the string s to get key
+      String sKey = stringSort(s);
+      // Get word by provided key
+      if(mapAnagram.get(sKey) != null) return new ArrayList<>(mapAnagram.get(sKey));
+      // Case when no key found in the map
+      return new ArrayList<String>(); 
    }
    
+
+   /**
+    * Function used to read file of given filename and store to private variable mapAnagram
+    * @param filename the name of file to read from
+    * @return no return value.
+    */
+   private void fileReader(String fileName) throws FileNotFoundException {
+      File readInFile = new File(fileName);
+      try(Scanner sc = new Scanner(readInFile);){
+         while(sc.hasNext()){                       // test end file
+            String word = sc.next();                // Read in string
+            String sortedWord = stringSort(word);   // Sort string
+            if (mapAnagram.containsKey(sortedWord)) {     
+               mapAnagram.get(sortedWord).add(word);
+            } else {
+               mapAnagram.put(sortedWord,new ArrayList<String>());
+               mapAnagram.get(sortedWord).add(word);
+           }
+         }
+      }
+      
+   }
+
+
+   /**
+    * Function used to sort input word in the order of ASCII number
+    * @param word: a original unsorted word string
+    * @return sortedWord: a sorted word string
+    */
+
+   private String stringSort(String word){
+      char[] chars = word.toCharArray();
+      // Sort Input Word
+      Arrays.sort(chars);
+      String sortedWord = String.valueOf(chars);
+      return sortedWord;
+   }
+
    
 }
