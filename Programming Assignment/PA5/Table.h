@@ -24,7 +24,7 @@
 // the following line of code is a forward declaration of Node struct.
 // allows us to use Node* (or ListType because of typedef) in private 
 // section of Table below. (Complete Node definition is in listFuncs.h)
-class Node;
+struct Node;
 
 typedef Node * ListType;
 
@@ -94,8 +94,9 @@ class Table {
    }
 
    // add private data and headers for private methods here
-   ListType * hashTable;       // create hash table
-   unsigned int hashSize;      // size of the hash table
+   ListType * hashTable;          // create hash table
+   unsigned int hashSize;         // size of the hash table
+   unsigned int numberOfEntries;  // number of entries in the hash table
    // (used in hashCode method above)
 
 
