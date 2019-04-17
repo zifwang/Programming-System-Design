@@ -91,7 +91,7 @@ ListType listGetNode(ListType list, std::string target);
  * Return:
  *    value: int type. The value at given key in the list
  */
-int listGetValue(ListType list, std::string target);
+int* listGetValue(ListType list, std::string target);
 
 /**
  * Insert new node before target string
@@ -165,6 +165,17 @@ bool listRemoveFront(ListType & list);
  *    bool: true or false (when list is empty)
  */ 
 bool listRemoveLast(ListType & list);
+
+/**
+ * Change the value in the linkedList by given target string
+ * Arguments:
+ *    list: a passed-by-reference linkedList
+ *    target: string
+ *    value: value change to 
+ * Return:
+ *    true (found target and update value) or false (target not found)
+ */
+bool listChangeValue(ListType & list, std::string target, int value);
 
 
 // keep the following line at the end of the file

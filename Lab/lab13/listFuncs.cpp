@@ -32,8 +32,11 @@ Node::Node(const string &theKey, int theValue, Node *n) {
 
 // Print given linkedList
 void listPrint(ListType list){
-   ListType node = list;            // Assign input list which is the first node of given linkedList to node
-
+   if(list == NULL){
+      cout << "<empty>" << endl;
+   }
+   
+   ListType node = list;
    while(node != NULL){
       cout << "key = " << node->key << ", value = " << node->value << endl;
       node = node->next;            // Update node to the next node in the linkedList
@@ -42,12 +45,11 @@ void listPrint(ListType list){
 
 // Get the size of linkedList
 int listGetSize(ListType list){
-   ListType node = list;            // Assign input list which is the first node of given linkedList to node
    int length = 0;
 
-   while(node != NULL){
+   while(list != NULL){
       length++;
-      node = node->next;            // Update node to the next node in the linkedList
+      list = list->next;            // Update node to the next node in the linkedList
    }
 
    return length;
@@ -55,28 +57,26 @@ int listGetSize(ListType list){
 
 // Check whether linkedList is empty
 bool listIsEmpty(ListType list){
-   return list==NULL;
+   if(list == NULL) return false;
+   return true;
 }
 
 // Get node in a given linkedList with key = target
-ListType listGetNode(ListType list, string target){
-   ListType node = list;            // Assign input list which is the first node of given linkedList to node
-   
-   while(node != NULL){
-      if(node->key == target) return node;         // Check whether target == key
-      node = node->next;
+ListType listGetNode(ListType list, string target){  
+   while(list != NULL){
+      if(list->key == target) return list;         // Check whether target == key
+      list = list->next;
    }
-
    return NULL;
 }
 
 // Get value with target key in the given linkedlist
-int listGetValue(ListType list, string target){
+int* listGetValue(ListType list, string target){
    ListType node = listGetNode(list, target);         // Call listGetNode method here
 
    if(node == NULL) return NULL;                      // Check whether target != key
 
-   return node->value;
+   return &(node->value);
 }
 
 // Insert new node in front of target strign
@@ -93,13 +93,16 @@ bool listInsertBefore(ListType & list, string key, int value, string target){
       return false;
    }
 
-   while(list->next != NULL){
-      if(list->next->key == target){
-         ListType newNode = new Node(key, value, list->next);
-         list->next = newNode;
+   ListType myNode = list;
+   while(myNode->next != NULL){
+      if(myNode->next->key == target){
+         ListType newNode = new Node(key, value, myNode->next);
+         myNode->next = newNode;
+         return true;
       }
-      else list = list->next;
+      else myNode = myNode->next;
    }
+   return false;
 }
 
 // Insert new node after target string
@@ -147,6 +150,7 @@ void listAppend(ListType & list, string key, int value){
 
 // Delete node with target string
 bool listRemove(ListType & list, string target){
+   if(list == NULL) return false;
    ListType node = list;
    
    // Check whether the first node's key == target
@@ -176,9 +180,9 @@ bool listRemoveFront(ListType & list){
    if(list == NULL) return false;
 
    // Case then more nodes in the list
-   ListType node = list;
-   list = list->next;
-   delete node;
+   ListType tmp = list->next;
+   delete list;
+   list = tmp;
 
    return true;
 }
@@ -188,25 +192,40 @@ bool listRemoveLast(ListType & list){
    // case when no node in the linkedList
    if(list == NULL) return false;
    
-   bool removeFlag;                          // removeFlage set to true when remove the last element.
    // case only one node in the linkedList
    if(list->next == NULL){
       delete list;
-      removeFlag = true;
+      list = NULL;
+      // removeFlag = true;
+      return true;
    }
 
    // case when more nodes in the linkedList
    ListType node = list;
    // loop to the end node
-   while(node->next != NULL){
-      if(node->next->next == NULL){
-         node->next = NULL;
-         delete node->next->next;
-         removeFlag = true;
-      }else{
-         node = node->next;
-      }
+   // while(node->next != NULL){
+   //    if(node->next->next == NULL){
+   //       node->next = NULL;
+   //       delete node->next->next;
+   //       removeFlag = true;
+   //    }else{
+   //       node = node->next;
+   //    }
+   // }
+   while(node->next->next != NULL){
+      node = node->next;
    }
+   ListType removeNode = node->next;
+   node->next = NULL;
+   delete removeNode;
 
-   return removeFlag;
+   return true;
+}
+
+// Change value of given target string in the linkedList
+bool listChangeValue(ListType & list, string target, int value){
+   ListType node = listGetNode(list,target);
+   if(node == NULL) return false;
+   node->value = value;
+   return true;
 }
