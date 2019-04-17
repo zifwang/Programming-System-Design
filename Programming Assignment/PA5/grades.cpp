@@ -83,16 +83,25 @@ void runCommand(Table* & hashTable,string command, bool & contFlag){
    case 0:
       cin >> name;
       cin >> score;
-      if(!hashTable->insert(name,score)){
-         cout << "Insert Failed: input name was already in the table." << endl;
+      if (!cin.fail()){
+         if(!hashTable->insert(name,score)){
+            cout << "Insert Failed: input name was already in the table." << endl;
+         }
+      }else{
+         cout << "Insert Failed: invalid input number." << endl;
       }
       contFlag = true;
       break;
    case 1:
       cin >> name;
       cin >> score;
-      if(hashTable->lookup(name) == NULL) cout << "Change Score Failed: input name is not in the table." << endl;
-      else *hashTable->lookup(name) = score;
+      if (!cin.fail()){
+         if(hashTable->lookup(name) == NULL) cout << "Change Score Failed: input name is not in the table." << endl;
+         else *hashTable->lookup(name) = score;
+      }
+      else{
+         cout << "Change Score Failed: invalid input number." << endl;
+      }
       contFlag = true;
       break;
    case 2:
