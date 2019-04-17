@@ -1,5 +1,5 @@
-// Name:
-// USC NetID:
+// Name: Zifan Wang 
+// USC NetID: 9505587296  
 // CSCI 455 PA5
 // Spring 2019
 
@@ -28,25 +28,27 @@ using namespace std;
 
 
 Table::Table() {
-
+   hashSize = HASH_SIZE;                  // Init. to the default hashSize
+   hashTable = new ListType[hashSize];    // Init. hash table with default hashSize
 }
 
 
 Table::Table(unsigned int hSize) {
-
+   hashSize = hSize;                      // Init. to the input size
+   hashTable = new ListType[hashSize];    // Init. hash table with input size
 }
 
 
 int * Table::lookup(const string &key) {
-   return NULL;   // dummy return value for stub
+   return listGetValue(hashTable[hashCode(key)],key);
 }
 
 bool Table::remove(const string &key) {
-   return false;  // dummy return value for stub
+   return listRemove(hashTable[hashCode(key)],key);
 }
 
 bool Table::insert(const string &key, int value) {
-   return false;  // dummy return value for stub
+   return listAppend(hashTable[hashCode(key)],key,value);
 }
 
 int Table::numEntries() const {

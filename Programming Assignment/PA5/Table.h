@@ -1,5 +1,5 @@
-// Name:
-// USC NetID:
+// Name: Zifan Wang
+// USC NetID: 9505587296
 // CSCI 455 PA5
 // Spring 2019
 
@@ -94,7 +94,7 @@ class Table {
    }
 
    // add private data and headers for private methods here
-
+   ListType * hashTable;       // create hash table
    unsigned int hashSize;      // size of the hash table
    // (used in hashCode method above)
 
