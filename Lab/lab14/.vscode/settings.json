@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.ipynb": "jupyter",
+        "iostream": "cpp",
+        "ostream": "cpp"
+    }
+}
