@@ -1,0 +1,14 @@
+# second version of a Makefile to compile Fraction module separately
+# from testFract.cpp program
+#
+# Executable created is called testFract
+#
+# Use:
+#     gmake testFract
+
+CXXFLAGS = -Wall -ggdb
+OBJS = Fraction.o testFract.o
+testFract: $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $@
+Fraction.o: Fraction.h
+testFract.o: Fraction.h

@@ -1,0 +1,40 @@
+*** some differences between C++ and Java I: ***
+
+need #include and 'using' statements for using library code (no 'import')
+
+named constants use 'const' keyword
+
+boolean variables use type 'bool'
+
+boolean expressions (e.g., in assgt stmt, if, while, or for) can
+actually be int expressions.  the value zero means false, and non-zero
+means true.
+
+    because of this, you need to watch out that you don't put = instead of
+    == in an if or while condition.
+
+you can define functions outside of a class (they are similar to Java
+static methods).  (i.e., classes are optional)
+
+I/O primitives are different (cout << val    cin >> val)
+
+functions or classes must be defined (or declared) before they are used.
+    to declare a function, put the function header, followed by semi-colon
+
+more parameter-passing modes:
+   you can pass parameters by value or by reference (& syntax for latter)
+   arrays are passed by reference without any special syntax
+   (plus more options when we get to classes)
+
+has fixed-sized arrays (i.e., capacity determined at compile-time and can't be
+                        changed)
+   no .length function for arrays: normally have to keep track of its size
+             in a separate variable or constant.
+   (there are also "dynamic" arrays we'll cover soon)
+
+String class is called 'string' in C++ (supports + and += for appending)
+
+object creation and initialization looks closer to that for primitive types.
+   e.g.   string foo;  // gets automatically initialized to ""
+
+

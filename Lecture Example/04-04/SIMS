@@ -1,0 +1,18 @@
+*** some similarities between C++ and Java I: ***
+
+comments are the same
+
+rules for forming identifiers are the same
+
+primitive types are pretty much the same (boolean --> bool in C++)
+
+operators are the same
+   (so arithmetic and boolean expressions are the same)
+
+function definition syntax is very similar, including passing
+primitive parameters by value.
+
+control structures are the same
+   (C++ doesn't have for-each; C++ allows integer-valued conditions)
+
+

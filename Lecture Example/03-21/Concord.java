@@ -17,13 +17,13 @@ import java.util.Iterator;
 
 public class Concord {
 	
-   
+   Map<String, Integer> concordMap;
 	
     /**
      * Creates empty concordance
      */
     public Concord() {
-
+       concordMap = new HashMap<>();
     }
 	
     /**
@@ -32,13 +32,21 @@ public class Concord {
      * operation.
      */
     public void addData(Scanner in) {
-
-		
+       while (in.hasNext()) {
+          String word = in.next();
+          Integer numOccur = concordMap.get(word); 
+          if (numOccur == null) {
+             concordMap.put(word, 1);
+          }
+          else {
+             concordMap.put(word, numOccur + 1);
+          }                 
+       }     	
     }
 	
 
     public String toString() {
-	   return ""; // dummy return statement 
+	   return concordMap.toString(); // dummy return statement 
     }
 	
 
